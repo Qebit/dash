@@ -5,19 +5,18 @@
 #include <bls/bls.h>
 
 #include <random.h>
-#include <tinyformat.h>
 
 #ifndef BUILD_BITCOIN_INTERNAL
 #include <support/allocators/mt_pooled_secure.h>
 #endif
 
-#include <assert.h>
-#include <string.h>
+#include <cassert>
+#include <cstring>
 
-static std::unique_ptr<bls::CoreMPL> pSchemeLegacy(new bls::LegacySchemeMPL);
-static std::unique_ptr<bls::CoreMPL> pScheme(new bls::BasicSchemeMPL);
+static const std::unique_ptr<bls::CoreMPL> pSchemeLegacy{std::make_unique<bls::LegacySchemeMPL>()};
+static const std::unique_ptr<bls::CoreMPL> pScheme(std::make_unique<bls::BasicSchemeMPL>());
 
-static std::unique_ptr<bls::CoreMPL>& Scheme(const bool fLegacy)
+static const std::unique_ptr<bls::CoreMPL>& Scheme(const bool fLegacy)
 {
     return fLegacy ? pSchemeLegacy : pScheme;
 }

@@ -3,17 +3,18 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-import time
-
-from test_framework.test_framework import DashTestFramework
-from test_framework.util import *
-
 '''
 feature_llmq_simplepose.py
 
 Checks simple PoSe system based on LLMQ commitments
 
 '''
+
+import time
+
+from test_framework.test_framework import DashTestFramework
+from test_framework.util import connect_nodes, force_finish_mnsync, p2p_port, wait_until
+
 
 class LLMQSimplePoSeTest(DashTestFramework):
     def set_test_params(self):
@@ -89,7 +90,7 @@ class LLMQSimplePoSeTest(DashTestFramework):
         for i in range(3):
             self.mine_quorum(expected_connections=expected_connections)
         for mn in self.mninfo:
-            assert(not self.check_punished(mn) and not self.check_banned(mn))
+            assert not self.check_punished(mn) and not self.check_banned(mn)
 
     def test_banning(self, invalidate_proc, expected_connections):
         mninfos_online = self.mninfo.copy()
@@ -107,7 +108,7 @@ class LLMQSimplePoSeTest(DashTestFramework):
                 self.reset_probe_timeouts()
                 self.mine_quorum(expected_connections=expected_connections, expected_members=expected_contributors, expected_contributions=expected_contributors, expected_complaints=expected_contributors-1, expected_commitments=expected_contributors, mninfos_online=mninfos_online, mninfos_valid=mninfos_valid)
 
-            assert(self.check_banned(mn))
+            assert self.check_banned(mn)
 
             if not went_offline:
                 # we do not include PoSe banned mns in quorums, so the next one should have 1 contributor less
@@ -123,7 +124,7 @@ class LLMQSimplePoSeTest(DashTestFramework):
                 # Make sure this tx "safe" to mine even when InstantSend and ChainLocks are no longer functional
                 self.bump_mocktime(60 * 10 + 1)
                 self.nodes[0].generate(1)
-                assert(not self.check_banned(mn))
+                assert not self.check_banned(mn)
 
                 if restart:
                     self.stop_node(mn.node.index)

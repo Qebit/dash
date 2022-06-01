@@ -10,7 +10,7 @@
 
 #include <chainparams.h>
 #include <tinyformat.h>
-#include <util.h>
+#include <util/system.h>
 
 #include <QApplication>
 
@@ -42,9 +42,8 @@ void NetworkStyle::rotateColor(QColor& col, const int iconColorHueShift, const i
     col.setHsl(h,s,l,a);
 }
 
-void NetworkStyle::rotateColors(QImage& img, const int iconColorHueShift, const int iconColorSaturationReduction) {
-    int h,s,l,a;
-
+void NetworkStyle::rotateColors(QImage& img, const int iconColorHueShift, const int iconColorSaturationReduction)
+{
     // traverse though lines
     for(int y=0;y<img.height();y++)
     {
@@ -109,5 +108,5 @@ const NetworkStyle *NetworkStyle::instantiate(const QString &networkId)
                     titleAddText.c_str());
         }
     }
-    return 0;
+    return nullptr;
 }

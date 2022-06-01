@@ -4,10 +4,10 @@
 
 #include <key_io.h>
 #include <hash.h>
-#include <validation.h> // For strMessageMagic
+#include <util/validation.h> // For strMessageMagic
 #include <messagesigner.h>
 #include <tinyformat.h>
-#include <utilstrencodings.h>
+#include <util/strencodings.h>
 
 bool CMessageSigner::GetKeysFromSecret(const std::string& strSecret, CKey& keyRet, CPubKey& pubkeyRet)
 {
@@ -64,7 +64,7 @@ bool CHashSigner::VerifyHash(const uint256& hash, const CKeyID& keyID, const std
     if(pubkeyFromSig.GetID() != keyID) {
         strErrorRet = strprintf("Keys don't match: pubkey=%s, pubkeyFromSig=%s, hash=%s, vchSig=%s",
                     keyID.ToString(), pubkeyFromSig.GetID().ToString(), hash.ToString(),
-                    EncodeBase64(vchSig.data(), vchSig.size()));
+                    EncodeBase64(vchSig));
         return false;
     }
 

@@ -3,9 +3,9 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chainparams.h>
-#include <init.h>
 #include <netfulfilledman.h>
-#include <util.h>
+#include <shutdown.h>
+#include <util/system.h>
 
 CNetFulfilledRequestManager netfulfilledman;
 
@@ -25,17 +25,6 @@ bool CNetFulfilledRequestManager::HasFulfilledRequest(const CService& addr, cons
     return  it != mapFulfilledRequests.end() &&
             it->second.find(strRequest) != it->second.end() &&
             it->second[strRequest] > GetTime();
-}
-
-void CNetFulfilledRequestManager::RemoveFulfilledRequest(const CService& addr, const std::string& strRequest)
-{
-    LOCK(cs_mapFulfilledRequests);
-    CService addrSquashed = Params().AllowMultiplePorts() ? addr : CService(addr, 0);
-    fulfilledreqmap_t::iterator it = mapFulfilledRequests.find(addrSquashed);
-
-    if (it != mapFulfilledRequests.end()) {
-        it->second.erase(strRequest);
-    }
 }
 
 void CNetFulfilledRequestManager::RemoveAllFulfilledRequests(const CService& addr)

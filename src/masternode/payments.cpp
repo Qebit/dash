@@ -19,7 +19,7 @@
 #include <util/ranges.h>
 #include <util/system.h>
 #include <validation.h>
-
+#include <consensus/params.h>
 #include <string>
 
 CMasternodePayments mnpayments;

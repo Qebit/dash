@@ -58,6 +58,8 @@ extern const std::string gCoinJoinName;
 // Application startup time (used for uptime calculation)
 int64_t GetStartupTime();
 
+void SetThreadPriority(int nPriority);
+
 extern const char * const BITCOIN_CONF_FILENAME;
 
 void SetupEnvironment();
@@ -435,5 +437,6 @@ private:
 #endif
 
 } // namespace util
+
 
 #endif // BITCOIN_UTIL_SYSTEM_H

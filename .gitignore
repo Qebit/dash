@@ -6,17 +6,17 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/dash
-src/dashd
-src/dash-cli
-src/dash-tx
-src/dash-wallet
+src/xeke
+src/xeked
+src/xeke-cli
+src/xeke-tx
+src/xeke-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_dash
-src/qt/test/test_dash-qt
+src/test/test_xeke
+src/qt/test/test_xeke-qt
 src/qt/res/css/colors/*
-src/bench/bench_dash
+src/bench/bench_xeke
 
 # autoreconf
 Makefile.in
@@ -93,8 +93,8 @@ libconftest.dylib*
 *.qm
 Makefile
 !depends/Makefile
-dash-qt
-Dash-Qt.app
+xeke-qt
+Xeke-Qt.app
 background.tiff*
 !/depends/Makefile
 
@@ -103,7 +103,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-dash-qt_test
+xeke-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -137,13 +137,13 @@ test/cache/*
 
 libdashconsensus.pc
 contrib/devtools/split-debug.sh
-src/qt/dash-qt.bash
+src/qt/xeke-qt.bash
 qa/pull-tester/tests-config.sh
 
 #development symlinks
-dash-cli
-dashd
-dash-qt
+xeke-cli
+xeked
+xeke-qt
 make
 
 /docker/bin

@@ -62,7 +62,7 @@
 #include <boost/thread.hpp> // Required for boost::this_thread::interruption_point();
 
 #if defined(NDEBUG)
-# error "Dash Core cannot be compiled without assertions."
+# error "Xeke Core cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -593,7 +593,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
             const CTransaction* ptxConflicting = pool.GetConflictTx(txin.prevout);
             if (ptxConflicting)
             {
-                // Transaction conflicts with mempool and RBF doesn't exist in Dash
+                // Transaction conflicts with mempool and RBF doesn't exist in Xeke
                 return state.Invalid(false, REJECT_DUPLICATE, "txn-mempool-conflict");
             }
         }
@@ -2038,7 +2038,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
 
     // MUST process special txes before updating UTXO to ensure consistency between mempool and block processing
     if (!ProcessSpecialTxsInBlock(block, pindex, state, view, fJustCheck, fScriptChecks)) {
-        return error("ConnectBlock(DASH): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("ConnectBlock(XEKE): ProcessSpecialTxsInBlock for block %s failed with %s",
                      pindex->GetBlockHash().ToString(), FormatStateMessage(state));
     }
 
@@ -2187,7 +2187,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCHMARK, "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs (%.2fms/blk)]\n", nInputs - 1, MILLI * (nTime4 - nTime2), nInputs <= 1 ? 0 : MILLI * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * MICRO, nTimeVerify * MILLI / nBlocksTotal);
 
 
-    // DASH
+    // XEKE
 
     // It's possible that we simply don't have enough data and this could fail
     // (i.e. block itself could be a correct one and we need to store it),
@@ -2195,7 +2195,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // the peer who sent us this block is missing some data and wasn't able
     // to recognize that block is actually invalid.
 
-    // DASH : CHECK TRANSACTIONS FOR INSTANTSEND
+    // XEKE : CHECK TRANSACTIONS FOR INSTANTSEND
 
     if (llmq::RejectConflictingBlocks()) {
         // Require other nodes to comply, send them some data in case they are missing it.
@@ -2204,13 +2204,13 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
             if (tx->vin.empty()) continue;
             while (llmq::CInstantSendLockPtr conflictLock = llmq::quorumInstantSendManager->GetConflictingLock(*tx)) {
                 if (llmq::chainLocksHandler->HasChainLock(pindex->nHeight, pindex->GetBlockHash())) {
-                    LogPrint(BCLog::ALL, "ConnectBlock(DASH): chain-locked transaction %s overrides islock %s\n",
+                    LogPrint(BCLog::ALL, "ConnectBlock(XEKE): chain-locked transaction %s overrides islock %s\n",
                             tx->GetHash().ToString(), ::SerializeHash(*conflictLock).ToString());
                     llmq::quorumInstantSendManager->RemoveConflictingLock(::SerializeHash(*conflictLock), *conflictLock);
                 } else {
                     // The node which relayed this should switch to correct chain.
                     // TODO: relay instantsend data/proof.
-                    return state.DoS(10, error("ConnectBlock(DASH): transaction %s conflicts with transaction lock %s",
+                    return state.DoS(10, error("ConnectBlock(XEKE): transaction %s conflicts with transaction lock %s",
                             tx->GetHash().ToString(), conflictLock->txid.ToString()), REJECT_INVALID, "conflict-tx-lock");
                 }
             }
@@ -2220,7 +2220,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     int64_t nTime5_1 = GetTimeMicros(); nTimeISFilter += nTime5_1 - nTime4;
     LogPrint(BCLog::BENCHMARK, "      - IS filter: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_1 - nTime4), nTimeISFilter * MICRO, nTimeISFilter * MILLI / nBlocksTotal);
 
-    // DASH : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
+    // XEKE : MODIFIED TO CHECK MASTERNODE PAYMENTS AND SUPERBLOCKS
 
     // TODO: resync data (both ways?) and try to reprocess this block later.
     CAmount blockReward = nFees + GetBlockSubsidy(pindex->pprev->nBits, pindex->pprev->nHeight, chainparams.GetConsensus());
@@ -2230,14 +2230,14 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCHMARK, "      - GetBlockSubsidy: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_2 - nTime5_1), nTimeSubsidy * MICRO, nTimeSubsidy * MILLI / nBlocksTotal);
 
     if (!IsBlockValueValid(block, pindex->nHeight, blockReward, strError)) {
-        return state.DoS(0, error("ConnectBlock(DASH): %s", strError), REJECT_INVALID, "bad-cb-amount");
+        return state.DoS(0, error("ConnectBlock(XEKE): %s", strError), REJECT_INVALID, "bad-cb-amount");
     }
 
     int64_t nTime5_3 = GetTimeMicros(); nTimeValueValid += nTime5_3 - nTime5_2;
     LogPrint(BCLog::BENCHMARK, "      - IsBlockValueValid: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_3 - nTime5_2), nTimeValueValid * MICRO, nTimeValueValid * MILLI / nBlocksTotal);
 
     if (!IsBlockPayeeValid(*block.vtx[0], pindex->nHeight, blockReward)) {
-        return state.DoS(0, error("ConnectBlock(DASH): couldn't find masternode or superblock payments"),
+        return state.DoS(0, error("ConnectBlock(XEKE): couldn't find masternode or superblock payments"),
                                 REJECT_INVALID, "bad-cb-payee");
     }
 
@@ -2245,9 +2245,9 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCHMARK, "      - IsBlockPayeeValid: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5_4 - nTime5_3), nTimePayeeValid * MICRO, nTimePayeeValid * MILLI / nBlocksTotal);
 
     int64_t nTime5 = GetTimeMicros(); nTimeDashSpecific += nTime5 - nTime4;
-    LogPrint(BCLog::BENCHMARK, "    - Dash specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeDashSpecific * MICRO, nTimeDashSpecific * MILLI / nBlocksTotal);
+    LogPrint(BCLog::BENCHMARK, "    - Xeke specific: %.2fms [%.2fs (%.2fms/blk)]\n", MILLI * (nTime5 - nTime4), nTimeDashSpecific * MICRO, nTimeDashSpecific * MILLI / nBlocksTotal);
 
-    // END DASH
+    // END XEKE
 
     if (fJustCheck)
         return true;
@@ -4618,7 +4618,7 @@ bool CChainState::RollforwardBlock(const CBlockIndex* pindex, CCoinsViewCache& i
     // MUST process special txes before updating UTXO to ensure consistency between mempool and block processing
     CValidationState state;
     if (!ProcessSpecialTxsInBlock(block, pindex, state, inputs, false /*fJustCheck*/, false /*fScriptChecks*/)) {
-        return error("RollforwardBlock(DASH): ProcessSpecialTxsInBlock for block %s failed with %s",
+        return error("RollforwardBlock(XEKE): ProcessSpecialTxsInBlock for block %s failed with %s",
             pindex->GetBlockHash().ToString(), FormatStateMessage(state));
     }
 

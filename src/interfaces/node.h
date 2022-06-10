@@ -37,7 +37,7 @@ namespace interfaces {
 class Handler;
 class Wallet;
 
-//! Interface for the src/evo part of a dash node (dashd process).
+//! Interface for the src/evo part of a xeke node (xeked process).
 class EVO
 {
 public:
@@ -45,7 +45,7 @@ public:
     virtual CDeterministicMNList getListAtChainTip() = 0;
 };
 
-//! Interface for the src/governance part of a dash node (dashd process).
+//! Interface for the src/governance part of a xeke node (xeked process).
 class GOV
 {
 public:
@@ -53,7 +53,7 @@ public:
     virtual std::vector<CGovernanceObject> getAllNewerThan(int64_t nMoreThanTime) = 0;
 };
 
-//! Interface for the src/llmq part of a dash node (dashd process).
+//! Interface for the src/llmq part of a xeke node (xeked process).
 class LLMQ
 {
 public:
@@ -61,7 +61,7 @@ public:
     virtual size_t getInstantSentLockCount() = 0;
 };
 
-//! Interface for the src/masternode part of a dash node (dashd process).
+//! Interface for the src/masternode part of a xeke node (xeked process).
 namespace Masternode
 {
 class Sync
@@ -99,7 +99,7 @@ public:
 };
 }
 
-//! Top-level interface for a dash node (dashd process).
+//! Top-level interface for a xeke node (xeked process).
 class Node
 {
 public:

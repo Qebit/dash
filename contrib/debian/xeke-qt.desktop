@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Xeke Core
+Comment=Xeke P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Xeke peer-to-peer Netzwerk
+Comment[fr]=Xeke, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Xeke, eşten eşe kriptografik sanal para birimi
+Exec=xeke-qt %u
+Terminal=false
+Type=Application
+Icon=dash128
+MimeType=x-scheme-handler/xeke;
+Categories=Office;Finance;P2P;Network;Qt;
+StartupWMClass=Xeke-qt

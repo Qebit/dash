@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: dashd.service
-Upstart: dashd.conf
-OpenRC:  dashd.openrc
-         dashd.openrcconf
-CentOS:  dashd.init
-macOS:   org.dash.dashd.plist
+SystemD: xeked.service
+Upstart: xeked.conf
+OpenRC:  xeked.openrc
+         xeked.openrcconf
+CentOS:  xeked.init
+macOS:   org.xeke.xeked.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

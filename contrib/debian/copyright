@@ -1,15 +1,16 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Dash Core
-Upstream-Contact: Dash Core Group, Inc https://www.dash.org/team/
-Source: https://github.com/dashpay/dash
+Upstream-Name: Xeke Core
+Upstream-Contact: Xeke Core Group, Inc https://www.xeke.tech/team/
+Source: https://github.com/xekepay/xeke
 
 Files: *
 Copyright: 2009-2019, Bitcoin Core Developers,
            2019-2020, Dash Core Developers
+                2022, Xeke Core Developers
 License: Expat
 Comment: The Bitcoin Core Developers encompasses the current developers listed on bitcoin.org,
-         as well as the numerous contributors to the project. The Dash Core Developers
-         encompasses the current developers listed on https://www.dash.org/team/, as well as
+         as well as the numerous contributors to the project. The Xeke Core Developers
+         encompasses the current developers listed on https://www.xeke.tech/team/, as well as
          the numerous contributors to the project.
 
 Files: debian/*

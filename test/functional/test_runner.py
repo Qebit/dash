@@ -377,11 +377,11 @@ def main():
 def run_tests(*, test_list, src_dir, build_dir, tmpdir, jobs=1, enable_coverage=False, args=None, combined_logs_len=0,failfast=False, runs_ci=False):
     args = args or []
 
-    # Warn if dashd is already running (unix only)
+    # Warn if xeked is already running (unix only)
     try:
-        pidof_output = subprocess.check_output(["pidof", "dashd"])
+        pidof_output = subprocess.check_output(["pidof", "xeked"])
         if not (pidof_output is None or pidof_output == b''):
-            print("%sWARNING!%s There is already a dashd process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
+            print("%sWARNING!%s There is already a xeked process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
 

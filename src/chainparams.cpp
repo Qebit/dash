@@ -172,9 +172,9 @@ public:
         consensus.DIP0003Height = 200;
         consensus.DIP0003EnforcementHeight = 280;
         consensus.DIP0003EnforcementHash = uint256S("");
-        consensus.DIP0008Height = 3500; // 00000000000000112e41e4b3afda8b233b8cc07c532d2eac5de097b68358c43e
-        consensus.BRRHeight = 40000; // 000000000000000c5a124f3eccfbe6e17876dca79cec9e63dfa70d269113c926
-        consensus.MinBIP9WarningHeight = 39800; // dip8 activation height + miner confirmation window
+        consensus.DIP0008Height = 3500;
+        consensus.BRRHeight = 40000;
+        consensus.MinBIP9WarningHeight = 39800;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
         consensus.nPowTargetTimespan = 30 * 60;
         consensus.nPowTargetSpacing = 1.5 * 60;
@@ -237,18 +237,18 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("dnsseed.xeke.xyz");
 
-        // Dash addresses start with 'X'
+        // Xeke addresses start with 'X'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,76);
-        // Dash script addresses start with '7'
+        // Xeke script addresses start with '7'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,16);
-        // Dash private keys start with '7' or 'X'
+        // Xeke private keys start with '7' or 'X'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,204);
-        // Dash BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // Xeke BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        // Dash BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // Xeke BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // Dash BIP44 coin type is '960'
+        // Xeke BIP44 coin type is '960'
         nExtCoinType = 960;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -315,15 +315,14 @@ public:
         consensus.nBudgetPaymentsCycleBlocks = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nSuperblockStartBlock = 614820; // The block at which 12.1 goes live (end of final 12.0 budget cycle)
-        //consensus.nSuperblockStartHash = uint256S("0000000000020cb27c7ef164d21003d5d20cdca2f54dd9a9ca6d45f4d47f8aa3");
         consensus.nSuperblockCycle = 16616; // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nGovernanceMinQuorum = 10;
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
         consensus.BIPCSVHeight = true;
         consensus.BIP34Height = 76;
-        consensus.BIP65Height = 2431; // 0000039cf01242c7f921dcb4806a5994bc003b48c1973ae0c89b67809c2bb2ab
-        consensus.BIP66Height = 2075; // 0000002acdd29a14583540cb72e1c5cc83783560e38fa7081495d474fe1671f7
+        consensus.BIP65Height = 2431;
+        consensus.BIP66Height = 2075;
         consensus.DIP0001Height = 5500;
         consensus.DIP0003Height = 7000;
         consensus.DIP0003EnforcementHeight = 7300;
@@ -332,8 +331,8 @@ public:
         consensus.BRRHeight = 387500; // 0000001537dbfd09dea69f61c1f8b2afa27c8dc91c934e144797761c9f10367b
         consensus.MinBIP9WarningHeight = 80816;  // dip8 activation height + miner confirmation window
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dash: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Dash: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Xeke: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Xeke: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 4002; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
@@ -389,18 +388,18 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("testnet-seed.dashdot.io"); // Just a static list of stable node(s), only supports x9
 
-        // Testnet Dash addresses start with 'y'
+        // Testnet Xeke addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet Dash script addresses start with '8' or '9'
+        // Testnet Xeke script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Dash BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Xeke BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Dash BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Xeke BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Dash BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Xeke BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -486,8 +485,8 @@ public:
         consensus.BRRHeight = 300;
         consensus.MinBIP9WarningHeight = 2018; // dip8 activation height + miner confirmation window
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dash: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Dash: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Xeke: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Xeke: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowKGWHeight = 4001; // nPowKGWHeight >= nPowDGWHeight means "no KGW"
@@ -544,18 +543,18 @@ public:
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("dashevo.org",  "devnet-seed.dashevo.org"));
 
-        // Testnet Dash addresses start with 'y'
+        // Testnet Xeke addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Testnet Dash script addresses start with '8' or '9'
+        // Testnet Xeke script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Dash BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Xeke BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Dash BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Xeke BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Dash BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Xeke BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -703,8 +702,8 @@ public:
         consensus.BRRHeight = 2500; // see block_reward_reallocation_tests
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dash: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Dash: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Xeke: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Xeke: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nPowKGWHeight = 15200; // same as mainnet
@@ -790,18 +789,18 @@ public:
             0
         };
 
-        // Regtest Dash addresses start with 'y'
+        // Regtest Xeke addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Regtest Dash script addresses start with '8' or '9'
+        // Regtest Xeke script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Regtest Dash BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest Xeke BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Dash BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest Xeke BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Dash BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest Xeke BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

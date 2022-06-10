@@ -1,5 +1,5 @@
 ---
-name: "dash-dmg-signer"
+name: "xeke-dmg-signer"
 distro: "ubuntu"
 suites:
 - "focal"
@@ -9,10 +9,10 @@ packages:
 - "faketime"
 - "xorriso"
 remotes:
-- "url": "https://github.com/dashpay/dash-detached-sigs.git"
+- "url": "https://github.com/xekepay/xeke-detached-sigs.git"
   "dir": "signature"
 files:
-- "dashcore-osx-unsigned.tar.gz"
+- "xekecore-osx-unsigned.tar.gz"
 script: |
   set -e -o pipefail
 
@@ -31,8 +31,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=dashcore-osx-unsigned.tar.gz
-  SIGNED=dashcore-osx-signed.dmg
+  UNSIGNED=xekecore-osx-unsigned.tar.gz
+  SIGNED=xekecore-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

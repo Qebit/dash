@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/dash-qt
+bin_PROGRAMS += qt/xeke-qt
 EXTRA_LIBRARIES += qt/libdashqt.a
 
 # dash qt core #
@@ -394,7 +394,7 @@ $(qt_libdashqt_a_OBJECTS) $(qt_dash_qt_OBJECTS) : | $(QT_MOC)
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# dash-qt binary #
+# xeke-qt binary #
 qt_dash_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 qt_dash_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
@@ -454,9 +454,9 @@ CLEAN_QT = $(nodist_qt_libdashqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/
 CLEANFILES += $(CLEAN_QT)
 
 dash_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libdashqt_a_OBJECTS) $(qt_dash_qt_OBJECTS) qt/dash-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libdashqt_a_OBJECTS) $(qt_dash_qt_OBJECTS) qt/xeke-qt$(EXEEXT) $(LIBBITCOINQT)
 
-dash_qt : qt/dash-qt$(EXEEXT)
+dash_qt : qt/xeke-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

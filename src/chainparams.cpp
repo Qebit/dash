@@ -207,10 +207,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_DIP0024].nFalloffCoeff = 5;      // this corresponds to 10 periods
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x"); // 1450000
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000005c92d7");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x"); // 1450000
+        consensus.defaultAssumeValid = uint256S("0x3e5e8767a2bda891efecf8e3fc98c615c4b9b8ce2c10f1a34d600890c93433aa");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -235,7 +235,7 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("dnsseed.akax.xyz");
+        vSeeds.emplace_back("dnsseed.akax.tech");
 
         // Akax addresses start with 'X'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,76);
@@ -286,14 +286,15 @@ public:
         checkpointData = {
             {
                 {0, uint256S("0x9ae5968e0b6243c92d8436ecc8857cebf01463d29634b8f1529f2e02b6ddf28f")},
+                {4675, uint256S("0xaf74838a0ea027c49d2afde1bb6e6edb37c58472bab4592899a841117e39ca81")},
             }
         };
 
         chainTxData = ChainTxData{
-            1654130542, // * UNIX timestamp of last known number of transactions (Block 1450962)
-            0,   // * total number of transactions between genesis and that timestamp
+            1654952336, // * UNIX timestamp of last known number of transactions (Block 1450962)
+            79099,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the ChainStateFlushed debug.log lines)
-            0         // * estimated number of transactions per second after that timestamp
+            0.1492875073136666         // * estimated number of transactions per second after that timestamp
         };
     }
 };

@@ -630,7 +630,7 @@ class BitcoinTestFramework(metaclass=BitcoinTestMetaClass):
             from_dir = get_datadir_path(self.options.cachedir, i)
             to_dir = get_datadir_path(self.options.tmpdir, i)
             shutil.copytree(from_dir, to_dir)
-            initialize_datadir(self.options.tmpdir, i, self.chain)  # Overwrite port/rpcport in dash.conf
+            initialize_datadir(self.options.tmpdir, i, self.chain)  # Overwrite port/rpcport in akax.conf
 
     def _initialize_chain_clean(self):
         """Initialize empty blockchain for use by the test.

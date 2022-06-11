@@ -37,7 +37,7 @@ Next, follow the instructions in [build-generic](build-generic.md)
 
 Disable-wallet mode
 --------------------
-When the intention is to run only a P2P node without a wallet, Dash Core may be compiled in
+When the intention is to run only a P2P node without a wallet, Akax Core may be compiled in
 disable-wallet mode with:
 
     ./configure --disable-wallet
@@ -49,25 +49,25 @@ Mining is also possible in disable-wallet mode using the `getblocktemplate` RPC 
 Running
 -------
 
-Dash Core is now available at `./src/dashd`
+Akax Core is now available at `./src/akaxd`
 
 Before running, you may create an empty configuration file:
 
-    mkdir -p "/Users/${USER}/Library/Application Support/DashCore"
+    mkdir -p "/Users/${USER}/Library/Application Support/AkaxCore"
 
-    touch "/Users/${USER}/Library/Application Support/DashCore/dash.conf"
+    touch "/Users/${USER}/Library/Application Support/AkaxCore/akax.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/DashCore/dash.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/AkaxCore/akax.conf"
 
-The first time you run dashd, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
+The first time you run akaxd, it will start downloading the blockchain. This process could take many hours, or even days on slower than average systems.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/DashCore/debug.log
+    tail -f $HOME/Library/Application\ Support/AkaxCore/debug.log
 
 Other commands:
 -------
 
-    ./src/dashd -daemon # Starts the dash daemon.
-    ./src/dash-cli --help # Outputs a list of command-line options.
-    ./src/dash-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/akaxd -daemon # Starts the akax daemon.
+    ./src/akax-cli --help # Outputs a list of command-line options.
+    ./src/akax-cli help # Outputs a list of RPC commands when the daemon is running.

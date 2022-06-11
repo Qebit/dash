@@ -16,7 +16,7 @@ RUN apt-get update && \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /xeke
+WORKDIR /akax
 
 COPY . .
 
@@ -38,27 +38,27 @@ RUN make -j`nproc | awk '{x=$1/2; print x}'` && make install
 
 RUN mkdir built-target && \
   case "$TARGETPLATFORM" in \
-  "linux/arm64") cp depends/arm-linux-gnueabihf/bin/xeke* /xeke/built-target ;; \
-  "linux/amd64") cp depends/x86_64-pc-linux-gnu/bin/xeke* /xeke/built-target ;; \
+  "linux/arm64") cp depends/arm-linux-gnueabihf/bin/akax* /akax/built-target ;; \
+  "linux/amd64") cp depends/x86_64-pc-linux-gnu/bin/akax* /akax/built-target ;; \
 esac
 
 FROM ubuntu:focal
-LABEL maintainer="Xeke Developers <dev@xeke.tech>"
-LABEL description="Dockerised XekeCore"
+LABEL maintainer="Akax Developers <dev@akax.tech>"
+LABEL description="Dockerised AkaxCore"
 
 ARG USER_ID
 ARG GROUP_ID
 ARG TAG
 
-ENV HOME /xeke
+ENV HOME /akax
 
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID:-1000}
 ENV GROUP_ID ${GROUP_ID:-1000}
-RUN groupadd -g ${GROUP_ID} xeke && \
-    useradd -u ${USER_ID} -g xeke -s /bin/bash -m -d /xeke xeke  && \
-    mkdir /xeke/.xekecore && \
-    chown xeke:xeke -R /xeke
+RUN groupadd -g ${GROUP_ID} akax && \
+    useradd -u ${USER_ID} -g akax -s /bin/bash -m -d /akax akax  && \
+    mkdir /akax/.akaxcore && \
+    chown akax:akax -R /akax
 
 RUN apt-get update && \
     apt-get -y install --no-install-recommends \
@@ -66,15 +66,15 @@ RUN apt-get update && \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /xeke/built-target/xeke* /usr/local/bin
+COPY --from=builder /akax/built-target/akax* /usr/local/bin
 
-USER xeke
+USER akax
 
-VOLUME ["/xeke"]
+VOLUME ["/akax"]
 
 COPY docker/docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 19191 19190 29291 29290
 
-WORKDIR /xeke
+WORKDIR /akax

@@ -16,7 +16,7 @@ USER root
 # unconditionally returns 0
 #
 RUN apt-get update && apt-get install $APT_ARGS sudo && rm -rf /var/lib/apt/lists/*
-RUN usermod -aG sudo xeke
+RUN usermod -aG sudo akax
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Make development environment more standalone
@@ -25,8 +25,8 @@ RUN apt-get update && apt-get install $APT_ARGS nano openssh-client zsh gdb && r
 # Disable noninteractive mode
 ENV DEBIAN_FRONTEND="dialog"
 
-# Expose Xeke P2P and RPC ports for main network and test networks
+# Expose Akax P2P and RPC ports for main network and test networks
 EXPOSE 19191 19190 29291 29290
 
 # We're done, switch back to non-privileged user
-USER xeke
+USER akax

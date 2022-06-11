@@ -40,9 +40,9 @@ RUN pip3 install \
     vulture==2.3 \
     yq
 
-# xeke_hash
-RUN git clone --depth 1 --no-tags https://github.com/xekepay/xeke_hash
-RUN cd xeke_hash && python3 setup.py install
+# akax_hash
+RUN git clone --depth 1 --no-tags https://github.com/akaxpay/akax_hash
+RUN cd akax_hash && python3 setup.py install
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -50,8 +50,8 @@ ARG GROUP_ID=1000
 # add user with specified (or default) user/group ids
 ENV USER_ID ${USER_ID}
 ENV GROUP_ID ${GROUP_ID}
-RUN groupadd -g ${GROUP_ID} xeke
-RUN useradd -u ${USER_ID} -g xeke -s /bin/bash -m -d /xeke xeke
+RUN groupadd -g ${GROUP_ID} akax
+RUN useradd -u ${USER_ID} -g akax -s /bin/bash -m -d /akax akax
 
 # Packages needed for all target builds
 RUN apt-get update && apt-get install $APT_ARGS \
@@ -99,14 +99,14 @@ RUN \
   update-alternatives --set x86_64-w64-mingw32-g++  /usr/bin/x86_64-w64-mingw32-g++-posix; \
   exit 0
 
-RUN mkdir /xeke-src && \
+RUN mkdir /akax-src && \
   mkdir -p /cache/ccache && \
   mkdir /cache/depends && \
   mkdir /cache/sdk-sources && \
-  chown $USER_ID:$GROUP_ID /xeke-src && \
+  chown $USER_ID:$GROUP_ID /akax-src && \
   chown $USER_ID:$GROUP_ID /cache && \
   chown $USER_ID:$GROUP_ID /cache -R
 
-WORKDIR /xeke-src
+WORKDIR /akax-src
 
-USER xeke
+USER akax

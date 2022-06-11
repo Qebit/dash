@@ -109,23 +109,23 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += xeked
+  bin_PROGRAMS += akaxd
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += xeke-cli
+  bin_PROGRAMS += akax-cli
 endif
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += xeke-tx
+  bin_PROGRAMS += akax-tx
 endif
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += xeke-wallet
+  bin_PROGRAMS += akax-wallet
 endif
 endif
 
 .PHONY: FORCE check-symbols check-security
-# xeke core #
+# akax core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
@@ -350,7 +350,7 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libdash_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between xeked and xeke-qt
+# server: shared between akaxd and akax-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
 # libdash_common or libdash_util libraries, instead.
@@ -474,7 +474,7 @@ libdash_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between xeked and xeke-qt, but only linked
+# wallet: shared between akaxd and akax-qt, but only linked
 # when wallet enabled
 libdash_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libdash_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -679,7 +679,7 @@ libdash_consensus_a_SOURCES = \
   util/strencodings.h \
   version.h
 
-# common: shared between xeked, and xeke-qt and non-server tools
+# common: shared between akaxd, and akax-qt and non-server tools
 libdash_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libdash_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libdash_common_a_SOURCES = \
@@ -767,7 +767,7 @@ AM_LDFLAGS += -Wl,--wrap=exp -Wl,--wrap=exp2 -Wl,--wrap=fcntl
 AM_LDFLAGS += -Wl,--wrap=log -Wl,--wrap=log2 -Wl,--wrap=pow
 endif
 
-# cli: shared between xeke-cli and xeke-qt
+# cli: shared between akax-cli and akax-qt
 libdash_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libdash_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libdash_cli_a_SOURCES = \
@@ -779,7 +779,7 @@ libdash_cli_a_SOURCES = \
 nodist_libdash_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# xeked binary #
+# akaxd binary #
 dashd_SOURCES = dashd.cpp
 dashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 dashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -808,7 +808,7 @@ dashd_LDADD = \
 
 dashd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 
-# xeke-cli binary #
+# akax-cli binary #
 dash_cli_SOURCES = dash-cli.cpp
 dash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 dash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -826,7 +826,7 @@ dash_cli_LDADD = \
 dash_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 #
 
-# xeke-tx binary #
+# akax-tx binary #
 dash_tx_SOURCES = dash-tx.cpp
 dash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 dash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -847,7 +847,7 @@ dash_tx_LDADD = \
 dash_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 #
 
-# xeke-wallet binary #
+# akax-wallet binary #
 dash_wallet_SOURCES = dash-wallet.cpp
 dash_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 dash_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)

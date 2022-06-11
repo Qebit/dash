@@ -128,7 +128,7 @@ public Q_SLOTS:
     void requestedSyncWarningInfo();
 
 
-    /** Update selected XEKE amount from transactionview */
+    /** Update selected AKAX amount from transactionview */
     void trxAmount(QString amount);
 Q_SIGNALS:
     /**  Fired when a message should be reported to the user */

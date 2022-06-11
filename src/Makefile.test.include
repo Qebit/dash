@@ -74,11 +74,11 @@ FUZZ_TARGETS = \
 if ENABLE_FUZZ
 noinst_PROGRAMS += $(FUZZ_TARGETS:=)
 else
-bin_PROGRAMS += test/test_xeke
+bin_PROGRAMS += test/test_akax
 endif
 
 TEST_SRCDIR = test
-TEST_BINARY=test/test_xeke$(EXEEXT)
+TEST_BINARY=test/test_akax$(EXEEXT)
 
 JSON_TEST_FILES = \
   test/data/blockfilters.json \

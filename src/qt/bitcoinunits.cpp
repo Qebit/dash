@@ -18,9 +18,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(XEKE);
-    unitlist.append(mXEKE);
-    unitlist.append(uXEKE);
+    unitlist.append(AKAX);
+    unitlist.append(mAKAX);
+    unitlist.append(uAKAX);
     unitlist.append(duffs);
     return unitlist;
 }
@@ -29,9 +29,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case XEKE:
-    case mXEKE:
-    case uXEKE:
+    case AKAX:
+    case mAKAX:
+    case uAKAX:
     case duffs:
         return true;
     default:
@@ -45,9 +45,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case XEKE: return QString("XEKE");
-            case mXEKE: return QString("mXEKE");
-            case uXEKE: return QString::fromUtf8("μXEKE");
+            case AKAX: return QString("AKAX");
+            case mAKAX: return QString("mAKAX");
+            case uAKAX: return QString::fromUtf8("μAKAX");
             case duffs: return QString("duffs");
             default: return QString("???");
         }
@@ -56,9 +56,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case XEKE: return QString("tXEKE");
-            case mXEKE: return QString("mtXEKE");
-            case uXEKE: return QString::fromUtf8("μtXEKE");
+            case AKAX: return QString("tAKAX");
+            case mAKAX: return QString("mtAKAX");
+            case uAKAX: return QString::fromUtf8("μtAKAX");
             case duffs: return QString("tduffs");
             default: return QString("???");
         }
@@ -71,10 +71,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case XEKE: return QString("Xeke");
-            case mXEKE: return QString("Milli-Xeke (1 / 1" THIN_SP_UTF8 "000)");
-            case uXEKE: return QString("Micro-Xeke (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-Xeke (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case AKAX: return QString("Akax");
+            case mAKAX: return QString("Milli-Akax (1 / 1" THIN_SP_UTF8 "000)");
+            case uAKAX: return QString("Micro-Akax (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-Akax (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -82,10 +82,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case XEKE: return QString("TestXekes");
-            case mXEKE: return QString("Milli-TestXeke (1 / 1" THIN_SP_UTF8 "000)");
-            case uXEKE: return QString("Micro-TestXeke (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case duffs: return QString("Ten Nano-TestXeke (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case AKAX: return QString("TestAkaxs");
+            case mAKAX: return QString("Milli-TestAkax (1 / 1" THIN_SP_UTF8 "000)");
+            case uAKAX: return QString("Micro-TestAkax (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case duffs: return QString("Ten Nano-TestAkax (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -95,9 +95,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case XEKE:  return 100000000;
-    case mXEKE: return 100000;
-    case uXEKE: return 100;
+    case AKAX:  return 100000000;
+    case mAKAX: return 100000;
+    case uAKAX: return 100;
     case duffs: return 1;
     default:   return 100000000;
     }
@@ -107,9 +107,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case XEKE: return 8;
-    case mXEKE: return 5;
-    case uXEKE: return 2;
+    case AKAX: return 8;
+    case mAKAX: return 5;
+    case uAKAX: return 2;
     case duffs: return 0;
     default: return 0;
     }

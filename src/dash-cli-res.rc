@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Xeke"
-            VALUE "FileDescription",    "xeke-cli (JSON-RPC client for " PACKAGE_NAME ")"
+            VALUE "CompanyName",        "Akax"
+            VALUE "FileDescription",    "akax-cli (JSON-RPC client for " PACKAGE_NAME ")"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "xeke-cli"
+            VALUE "InternalName",       "akax-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "xeke-cli.exe"
-            VALUE "ProductName",        "xeke-cli"
+            VALUE "OriginalFilename",   "akax-cli.exe"
+            VALUE "ProductName",        "akax-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

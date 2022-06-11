@@ -1,10 +1,10 @@
-# `xeke.conf` Configuration File
+# `akax.conf` Configuration File
 
-The configuration file is used by `xeked`, `xeke-qt` and `xeke-cli`.
+The configuration file is used by `akaxd`, `akax-qt` and `akax-cli`.
 
 All command-line options (except for `-?`, `-help`, `-version` and `-conf`) may be specified in a configuration file, and all configuration file options (except for `includeconf`) may also be specified on the command line. Command-line options override values set in the configuration file and configuration file options override values set in the GUI.
 
-Changes to the configuration file while `xeked` or `xeke-qt` is running only take effect after restarting.
+Changes to the configuration file while `akaxd` or `akax-qt` is running only take effect after restarting.
 
 ## Configuration File Format
 
@@ -49,16 +49,16 @@ rpcport=4000
 
 ## Configuration File Path
 
-The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `xeke.conf` and it is located in the Xeke data directory, but both the xeke data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
+The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `akax.conf` and it is located in the Akax data directory, but both the akax data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
 
-The `includeconf=<file>` option in the `xeke.conf` file can be used to include additional configuration files.
+The `includeconf=<file>` option in the `akax.conf` file can be used to include additional configuration files.
 
 ### Default configuration file locations
 
 Operating System | Data Directory | Example Path
 -- | -- | --
-Windows | `%APPDATA%\XekeCore\` | `C:\Users\username\AppData\Roaming\XekeCore\xeke.conf`
-Linux | `$HOME/.xekecore/` | `/home/username/.xekecore/xeke.conf`
-macOS | `$HOME/Library/Application Support/XekeCore/` | `/Users/username/Library/Application Support/XekeCore/xeke.conf`
+Windows | `%APPDATA%\AkaxCore\` | `C:\Users\username\AppData\Roaming\AkaxCore\akax.conf`
+Linux | `$HOME/.akaxcore/` | `/home/username/.akaxcore/akax.conf`
+macOS | `$HOME/Library/Application Support/AkaxCore/` | `/Users/username/Library/Application Support/AkaxCore/akax.conf`
 
-You can find an example xeke.conf file in [share/examples/xeke.conf](../share/examples/xeke.conf).
+You can find an example akax.conf file in [share/examples/akax.conf](../share/examples/akax.conf).

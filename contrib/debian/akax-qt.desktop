@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Akax Core
+Comment=Akax P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Akax peer-to-peer Netzwerk
+Comment[fr]=Akax, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Akax, eşten eşe kriptografik sanal para birimi
+Exec=akax-qt %u
+Terminal=false
+Type=Application
+Icon=dash128
+MimeType=x-scheme-handler/akax;
+Categories=Office;Finance;P2P;Network;Qt;
+StartupWMClass=Akax-qt

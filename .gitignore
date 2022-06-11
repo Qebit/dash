@@ -6,17 +6,17 @@ reset-files.bash
 *.tar.gz
 
 *.exe
-src/xeke
-src/xeked
-src/xeke-cli
-src/xeke-tx
-src/xeke-wallet
+src/akax
+src/akaxd
+src/akax-cli
+src/akax-tx
+src/akax-wallet
 src/test/fuzz
 !src/test/fuzz/*.*
-src/test/test_xeke
-src/qt/test/test_xeke-qt
+src/test/test_akax
+src/qt/test/test_akax-qt
 src/qt/res/css/colors/*
-src/bench/bench_xeke
+src/bench/bench_akax
 
 # autoreconf
 Makefile.in
@@ -93,8 +93,8 @@ libconftest.dylib*
 *.qm
 Makefile
 !depends/Makefile
-xeke-qt
-Xeke-Qt.app
+akax-qt
+Akax-Qt.app
 background.tiff*
 !/depends/Makefile
 
@@ -103,7 +103,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-xeke-qt_test
+akax-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -137,13 +137,13 @@ test/cache/*
 
 libdashconsensus.pc
 contrib/devtools/split-debug.sh
-src/qt/xeke-qt.bash
+src/qt/akax-qt.bash
 qa/pull-tester/tests-config.sh
 
 #development symlinks
-xeke-cli
-xeked
-xeke-qt
+akax-cli
+akaxd
+akax-qt
 make
 
 /docker/bin

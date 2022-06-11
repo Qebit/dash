@@ -1,15 +1,15 @@
-# bash programmable completion for xeked(1) and xeke-qt(1)
+# bash programmable completion for akaxd(1) and akax-qt(1)
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-_xeked() {
+_akaxd() {
     local cur prev words=() cword
-    local xeked
+    local akaxd
 
-    # save and use original argument to invoke xeked for -help
+    # save and use original argument to invoke akaxd for -help
     # it might not be in $PATH
-    xeked="$1"
+    akaxd="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -33,7 +33,7 @@ _xeked() {
             # only parse -help if sensible
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
                 local helpopts
-                helpopts=$($xeked -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($akaxd -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
                 COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
             fi
 
@@ -45,7 +45,7 @@ _xeked() {
             ;;
     esac
 } &&
-complete -F _xeked xeked xeke-qt
+complete -F _akaxd akaxd akax-qt
 
 # Local variables:
 # mode: shell-script

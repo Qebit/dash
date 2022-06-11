@@ -269,7 +269,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent, bool fAllow
 
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Xeke address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Akax address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
     widget->setValidator(new BitcoinAddressEntryValidator(parent, fAllowURI));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -319,8 +319,8 @@ void setupAppearance(QWidget* parent, OptionsModel* model)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no xeke: URI
-    if(!uri.isValid() || uri.scheme() != QString("xeke"))
+    // return if URI is not valid or is no akax: URI
+    if(!uri.isValid() || uri.scheme() != QString("akax"))
         return false;
 
     SendCoinsRecipient rv;
@@ -362,7 +362,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::XEKE, i->second, &rv.amount))
+                if(!BitcoinUnits::parse(BitcoinUnits::AKAX, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -394,12 +394,12 @@ bool validateBitcoinURI(const QString& uri)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("xeke:%1").arg(info.address);
+    QString ret = QString("akax:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::XEKE, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::AKAX, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -605,7 +605,7 @@ void openConfigfile()
 {
     fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-    /* Open xeke.conf with the associated application */
+    /* Open akax.conf with the associated application */
     if (fs::exists(pathConfig)) {
         // Workaround for macOS-specific behavior; see #15409.
         if (!QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)))) {
@@ -795,15 +795,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Xeke Core.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Akax Core.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Xeke Core (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Xeke Core (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Akax Core (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Akax Core (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for "Xeke Core*.lnk"
+    // check for "Akax Core*.lnk"
     return fs::exists(StartupShortcutPath());
 }
 
@@ -878,8 +878,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "xekecore.desktop";
-    return GetAutostartDir() / strprintf("xekecore-%s.desktop", chain);
+        return GetAutostartDir() / "akaxcore.desktop";
+    return GetAutostartDir() / strprintf("akaxcore-%s.desktop", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -919,13 +919,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = gArgs.GetChainName();
-        // Write a xekecore.desktop file to the autostart directory:
+        // Write a akaxcore.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Xeke Core\n";
+            optionFile << "Name=Akax Core\n";
         else
-            optionFile << strprintf("Name=Xeke Core (%s)\n", chain);
+            optionFile << strprintf("Name=Akax Core (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

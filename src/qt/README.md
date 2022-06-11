@@ -9,7 +9,7 @@ See build instructions ([macOS](/doc/build-osx.md), [Windows](/doc/build-windows
 To run:
 
 ```sh
-./src/qt/xeke-qt
+./src/qt/akax-qt
 ```
 
 ## Files and directories
@@ -86,10 +86,10 @@ Instructions for macOS:
 1. Make sure you installed everything through Homebrew mentioned in the [macOS build instructions](/doc/build-osx.md)
 2. Use `./configure` with the `--enable-debug` flag
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "xeke-qt" as project name, enter src/qt as location
+4. Enter "akax-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
 8. Select the default "Desktop" kit and select "Clang (x86 64bit in /usr/bin)" as compiler
 9. Select LLDB as debugger (you might need to set the path to your installation)
-10. Start debugging with Qt Creator (you might need to the executable to "xeke-qt" under "Run", which is where you can also add command line arguments)
+10. Start debugging with Qt Creator (you might need to the executable to "akax-qt" under "Run", which is where you can also add command line arguments)

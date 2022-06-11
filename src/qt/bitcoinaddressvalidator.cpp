@@ -94,7 +94,7 @@ BitcoinAddressCheckValidator::BitcoinAddressCheckValidator(QObject *parent) :
 QValidator::State BitcoinAddressCheckValidator::validate(QString &input, int &pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed Xeke address
+    // Validate the passed Akax address
     if (IsValidDestinationString(input.toStdString())) {
         return QValidator::Acceptable;
     }

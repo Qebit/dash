@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2014-2022 The Xeke Core developers
+// Copyright (c) 2014-2022 The Akax Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -513,11 +513,11 @@ static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainpar
     return true;
 }
 
-void static XekeMiner(const CChainParams& chainparams)
+void static AkaxMiner(const CChainParams& chainparams)
 {
-    LogPrintf("XekeMiner -- started\n");
+    LogPrintf("AkaxMiner -- started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    util::ThreadRename("xeke-miner");
+    util::ThreadRename("akax-miner");
 
     unsigned int nExtraNonce = 0;
 
@@ -581,7 +581,7 @@ void static XekeMiner(const CChainParams& chainparams)
 
             if (!pblocktemplate.get())
             {
-                LogPrintf("XekeMiner -- Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
+                LogPrintf("AkaxMiner -- Keypool ran out, please call keypoolrefill before restarting the mining thread\n");
                 return;
             }
             CBlock *pblock = &pblocktemplate->block;
@@ -591,7 +591,7 @@ void static XekeMiner(const CChainParams& chainparams)
             LogPrintf("Algos: %s\n",hashSelection.getHashSelectionString());
             IncrementExtraNonce(pblock, pindexPrev, nExtraNonce);
 
-            LogPrintf("XekeMiner -- Running miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+            LogPrintf("AkaxMiner -- Running miner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
                 ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
             //
@@ -609,7 +609,7 @@ void static XekeMiner(const CChainParams& chainparams)
                     {
                         // Found a solution
                         SetThreadPriority(THREAD_PRIORITY_NORMAL);
-                        LogPrintf("XekeMiner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
+                        LogPrintf("AkaxMiner:\n  proof-of-work found\n  hash: %s\n  target: %s\n", hash.GetHex(), hashTarget.GetHex());
                         ProcessBlockFound(pblock, chainparams, hash);
                         SetThreadPriority(THREAD_PRIORITY_LOWEST);
                         coinbaseScript->KeepScript();
@@ -656,17 +656,17 @@ void static XekeMiner(const CChainParams& chainparams)
     }
     catch (const boost::thread_interrupted&)
     {
-        LogPrintf("XekeMiner -- terminated\n");
+        LogPrintf("AkaxMiner -- terminated\n");
         throw;
     }
     catch (const std::runtime_error &e)
     {
-        LogPrintf("XekeMiner -- runtime error: %s\n", e.what());
+        LogPrintf("AkaxMiner -- runtime error: %s\n", e.what());
         return;
     }
 }
 
-int GenerateXekes(bool fGenerate, int nThreads, const CChainParams& chainparams)
+int GenerateAkaxs(bool fGenerate, int nThreads, const CChainParams& chainparams)
 {
 
     static boost::thread_group* minerThreads = NULL;
@@ -694,7 +694,7 @@ int GenerateXekes(bool fGenerate, int nThreads, const CChainParams& chainparams)
     nHashesPerSec = 0;
 
     for (int i = 0; i < nThreads; i++){
-        minerThreads->create_thread(boost::bind(&XekeMiner, boost::cref(chainparams)));
+        minerThreads->create_thread(boost::bind(&AkaxMiner, boost::cref(chainparams)));
     }
     return(numCores);
 }

@@ -5,7 +5,7 @@ export LC_ALL=C
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"/../.. || exit
 
-DOCKER_IMAGE=${DOCKER_IMAGE:-xekepay/xeked-develop}
+DOCKER_IMAGE=${DOCKER_IMAGE:-akaxpay/akaxd-develop}
 DOCKER_TAG=${DOCKER_TAG:-latest}
 DOCKER_RELATIVE_PATH=contrib/containers/deploy
 
@@ -17,11 +17,11 @@ if [ -d $DOCKER_RELATIVE_PATH/bin ]; then
 fi
 
 mkdir $DOCKER_RELATIVE_PATH/bin
-cp "$BUILD_DIR"/src/xeked    $DOCKER_RELATIVE_PATH/bin/
-cp "$BUILD_DIR"/src/xeke-cli $DOCKER_RELATIVE_PATH/bin/
-cp "$BUILD_DIR"/src/xeke-tx  $DOCKER_RELATIVE_PATH/bin/
-strip $DOCKER_RELATIVE_PATH/bin/xeked
-strip $DOCKER_RELATIVE_PATH/bin/xeke-cli
-strip $DOCKER_RELATIVE_PATH/bin/xeke-tx
+cp "$BUILD_DIR"/src/akaxd    $DOCKER_RELATIVE_PATH/bin/
+cp "$BUILD_DIR"/src/akax-cli $DOCKER_RELATIVE_PATH/bin/
+cp "$BUILD_DIR"/src/akax-tx  $DOCKER_RELATIVE_PATH/bin/
+strip $DOCKER_RELATIVE_PATH/bin/akaxd
+strip $DOCKER_RELATIVE_PATH/bin/akax-cli
+strip $DOCKER_RELATIVE_PATH/bin/akax-tx
 
 docker build --pull -t "$DOCKER_IMAGE":"$DOCKER_TAG" -f $DOCKER_RELATIVE_PATH/Dockerfile docker

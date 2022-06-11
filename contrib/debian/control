@@ -1,8 +1,8 @@
-Source: xeke
+Source: akax
 Section: utils
 Priority: optional
-Maintainer: Michael Edirin <edirin@xeke.tech>
-Uploaders: Michael Edirin <edirin@xeke.tech>
+Maintainer: Michael Edirin <edirin@akax.tech>
+Uploaders: Michael Edirin <edirin@akax.tech>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -23,45 +23,45 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://www.xeke.tech/
-Vcs-Git: git://github.com/xekepay/xeke.git
-Vcs-Browser: https://github.com/xekepay/xeke
+Homepage: https://www.akax.tech/
+Vcs-Git: git://github.com/akaxpay/akax.git
+Vcs-Browser: https://github.com/akaxpay/akax
 
-Package: xeked
+Package: akaxd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Xeke is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world and its a fork of Xeke. Xeke uses peer-to-peer
+ Akax is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world and its a fork of Akax. Akax uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Xeke Core
+ and issuing money are carried out collectively by the network. Akax Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, xeked, and the CLI tool
- xeke-cli to interact with the daemon.
+ This package provides the daemon, akaxd, and the CLI tool
+ akax-cli to interact with the daemon.
 
-Package: xeke-qt
+Package: akax-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Xeke is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Xeke uses peer-to-peer
+ Akax is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Akax uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Xeke Core
+ and issuing money are carried out collectively by the network. Akax Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides Xeke-Qt, a GUI for Xeke based on Qt.
+ This package provides Akax-Qt, a GUI for Akax based on Qt.
 
-Package: xeke-tx
+Package: akax-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- Xeke is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Xeke uses peer-to-peer
+ Akax is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Akax uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Xeke Core
+ and issuing money are carried out collectively by the network. Akax Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides xeke-tx, a command-line transaction creation
- tool which can be used without a xeke daemon.  Some means of
+ This package provides akax-tx, a command-line transaction creation
+ tool which can be used without a akax daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

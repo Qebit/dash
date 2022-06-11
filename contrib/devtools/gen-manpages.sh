@@ -10,11 +10,11 @@ BUILDDIR=${BUILDDIR:-$TOPDIR}
 BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BITCOIND=${BITCOIND:-$BINDIR/xeked}
-BITCOINCLI=${BITCOINCLI:-$BINDIR/xeke-cli}
-BITCOINTX=${BITCOINTX:-$BINDIR/xeke-tx}
-WALLET_TOOL=${WALLET_TOOL:-$BINDIR/xeke-wallet}
-BITCOINQT=${BITCOINQT:-$BINDIR/qt/xeke-qt}
+BITCOIND=${BITCOIND:-$BINDIR/akaxd}
+BITCOINCLI=${BITCOINCLI:-$BINDIR/akax-cli}
+BITCOINTX=${BITCOINTX:-$BINDIR/akax-tx}
+WALLET_TOOL=${WALLET_TOOL:-$BINDIR/akax-wallet}
+BITCOINQT=${BITCOINQT:-$BINDIR/qt/akax-qt}
 
 [ ! -x $BITCOIND ] && echo "$BITCOIND not found or not executable." && exit 1
 
@@ -22,8 +22,8 @@ BITCOINQT=${BITCOINQT:-$BINDIR/qt/xeke-qt}
 read -r -a BTCVER <<< "$($BITCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }')"
 
 # Create a footer file with copyright content.
-# This gets autodetected fine for xeked if --version-string is not set,
-# but has different outcomes for xeke-qt and xeke-cli.
+# This gets autodetected fine for akaxd if --version-string is not set,
+# but has different outcomes for akax-qt and akax-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $BITCOIND --version | sed -n '1!p' >> footer.h2m
 

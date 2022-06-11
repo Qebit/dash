@@ -1,5 +1,5 @@
 ---
-name: "xeke-win-18"
+name: "akax-win-18"
 enable_cache: true
 distro: "ubuntu"
 suites:
@@ -24,8 +24,8 @@ packages:
 - "python3"
 - "ccache"
 remotes:
-- "url": "https://github.com/xekepay/xeke.git"
-  "dir": "xeke"
+- "url": "https://github.com/akaxpay/akax.git"
+  "dir": "akax"
 files: []
 script: |
   set -e -o pipefail
@@ -123,7 +123,7 @@ script: |
   create_per-host_compiler_wrapper "2000-01-01 12:00:00"
   export PATH=${WRAP_DIR}:${PATH}
 
-  cd xeke
+  cd akax
   BASEPREFIX="${PWD}/depends"
   # Build dependencies for each host
   for i in $HOSTS; do

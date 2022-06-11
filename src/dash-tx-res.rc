@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Xeke"
-            VALUE "FileDescription",    "xeke-tx (CLI Xeke transaction editor utility)"
+            VALUE "CompanyName",        "Akax"
+            VALUE "FileDescription",    "akax-tx (CLI Akax transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "xeke-tx"
+            VALUE "InternalName",       "akax-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "xeke-tx.exe"
-            VALUE "ProductName",        "xeke-tx"
+            VALUE "OriginalFilename",   "akax-tx.exe"
+            VALUE "ProductName",        "akax-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

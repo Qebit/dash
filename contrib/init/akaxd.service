@@ -1,48 +1,48 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit xeked.service
+# $ systemctl edit akaxd.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
-# /etc/xeke/xeke.conf, except for those explicitly specified as arguments
+# /etc/akax/akax.conf, except for those explicitly specified as arguments
 # in ExecStart=
 
 [Unit]
-Description=Xeke daemon
+Description=Akax daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/xeked -daemon \
-                                                            -pid=/run/xeked/xeked.pid \
-                                                            -conf=/etc/xeke/xeke.conf  \
-                                                            -datadir=/var/lib/xeked
+ExecStart=/usr/bin/akaxd -daemon \
+                                                            -pid=/run/akaxd/akaxd.pid \
+                                                            -conf=/etc/akax/akax.conf  \
+                                                            -datadir=/var/lib/akaxd
 
 # Process management
 ####################
 
 Type=forking
-PIDFile=/run/xeked/xeked.pid
+PIDFile=/run/akaxd/akaxd.pid
 Restart=on-failure
 TimeoutStopSec=600
 
 # Directory creation and permissions
 ####################################
 
-# Run as xeke:xeke
-User=xekecore
-Group=xekecore
+# Run as akax:akax
+User=akaxcore
+Group=akaxcore
 
-# /run/xeked
-RuntimeDirectory=xeked
+# /run/akaxd
+RuntimeDirectory=akaxd
 RuntimeDirectoryMode=0710
 
-# /etc/xeke
-ConfigurationDirectory=xeke
+# /etc/akax
+ConfigurationDirectory=akax
 ConfigurationDirectoryMode=0710
 
-# /var/lib/xeked
-StateDirectory=xeked
+# /var/lib/akaxd
+StateDirectory=akaxd
 StateDirectoryMode=0710
 
 # Hardening measures

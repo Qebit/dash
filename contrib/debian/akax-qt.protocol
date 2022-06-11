@@ -1,6 +1,6 @@
 [Protocol]
-exec=xeke-qt '%u'
-protocol=xeke
+exec=akax-qt '%u'
+protocol=akax
 input=none
 output=none
 helper=true

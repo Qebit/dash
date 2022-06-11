@@ -9,8 +9,8 @@
 #include <string>
 
 /**
- * CBaseChainParams defines the base parameters (shared between xeke-cli and xeked)
- * of a given instance of the Xeke system.
+ * CBaseChainParams defines the base parameters (shared between akax-cli and akaxd)
+ * of a given instance of the Akax system.
  */
 class CBaseChainParams
 {

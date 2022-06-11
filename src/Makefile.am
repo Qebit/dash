@@ -47,41 +47,41 @@ BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 BLS_LIBS=-lbls-dash -lrelic_s
 
-LIBBITCOIN_SERVER=libdash_server.a
-LIBBITCOIN_COMMON=libdash_common.a
-LIBBITCOIN_CONSENSUS=libdash_consensus.a
-LIBBITCOIN_CLI=libdash_cli.a
-LIBBITCOIN_UTIL=libdash_util.a
-LIBBITCOIN_CRYPTO_BASE=crypto/libdash_crypto_base.a
+LIBBITCOIN_SERVER=libakax_server.a
+LIBBITCOIN_COMMON=libakax_common.a
+LIBBITCOIN_CONSENSUS=libakax_consensus.a
+LIBBITCOIN_CLI=libakax_cli.a
+LIBBITCOIN_UTIL=libakax_util.a
+LIBBITCOIN_CRYPTO_BASE=crypto/libakax_crypto_base.a
 LIBBITCOINQT=qt/libdashqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libdash_zmq.a
+LIBBITCOIN_ZMQ=libakax_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
 LIBBITCOINCONSENSUS=libdashconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libdash_wallet.a
-LIBBITCOIN_WALLET_TOOL=libdash_wallet_tool.a
+LIBBITCOIN_WALLET=libakax_wallet.a
+LIBBITCOIN_WALLET_TOOL=libakax_wallet_tool.a
 endif
 
 LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libdash_crypto_sse41.a
+LIBBITCOIN_CRYPTO_SSE41 = crypto/libakax_crypto_sse41.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libdash_crypto_avx2.a
+LIBBITCOIN_CRYPTO_AVX2 = crypto/libakax_crypto_avx2.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
 endif
 if ENABLE_X86_SHANI
-LIBBITCOIN_CRYPTO_X86_SHANI = crypto/libdash_crypto_x86_shani.a
+LIBBITCOIN_CRYPTO_X86_SHANI = crypto/libakax_crypto_x86_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_X86_SHANI)
 endif
 if ENABLE_ARM_SHANI
-LIBBITCOIN_CRYPTO_ARM_SHANI = crypto/libdash_crypto_arm_shani.a
+LIBBITCOIN_CRYPTO_ARM_SHANI = crypto/libakax_crypto_arm_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_ARM_SHANI)
 endif
 
@@ -348,15 +348,15 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libdash_util_a-clientversion.$(OBJEXT): obj/build.h
+libakax_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between akaxd and akax-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
-# libdash_common or libdash_util libraries, instead.
-libdash_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libdash_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_server_a_SOURCES = \
+# libakax_common or libakax_util libraries, instead.
+libakax_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libakax_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   banman.cpp \
@@ -456,16 +456,16 @@ libdash_server_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if ENABLE_WALLET
-libdash_server_a_SOURCES += wallet/init.cpp
+libakax_server_a_SOURCES += wallet/init.cpp
 endif
 if !ENABLE_WALLET
-libdash_server_a_SOURCES += dummywallet.cpp
+libakax_server_a_SOURCES += dummywallet.cpp
 endif
 
 if ENABLE_ZMQ
-libdash_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libdash_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_zmq_a_SOURCES = \
+libakax_zmq_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libakax_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp \
@@ -476,9 +476,9 @@ endif
 
 # wallet: shared between akaxd and akax-qt, but only linked
 # when wallet enabled
-libdash_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_wallet_a_SOURCES = \
+libakax_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_wallet_a_SOURCES = \
   coinjoin/client.cpp \
   coinjoin/options.cpp \
   coinjoin/util.cpp \
@@ -500,16 +500,16 @@ libdash_wallet_a_SOURCES = \
   wallet/coinselection.cpp \
   $(BITCOIN_CORE_H)
 
-libdash_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_wallet_tool_a_SOURCES = \
+libakax_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_wallet_tool_a_SOURCES = \
   wallet/wallettool.cpp \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libdash_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
-crypto_libdash_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_libdash_crypto_base_a_SOURCES = \
+crypto_libakax_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libakax_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libakax_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha_poly_aead.h \
@@ -578,23 +578,23 @@ crypto_libdash_crypto_base_a_SOURCES = \
   crypto/siphash.h
 
 if USE_ASM
-crypto_libdash_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libakax_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
-crypto_libdash_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libdash_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libdash_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
-crypto_libdash_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
-crypto_libdash_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libakax_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libakax_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libakax_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
+crypto_libakax_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
+crypto_libakax_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
 
-crypto_libdash_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libdash_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libdash_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
-crypto_libdash_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
-crypto_libdash_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libakax_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libakax_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libakax_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
+crypto_libakax_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
+crypto_libakax_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
 # x11
-crypto_libdash_crypto_base_a_SOURCES += \
+crypto_libakax_crypto_base_a_SOURCES += \
   crypto/blake.c \
   crypto/bmw.c \
   crypto/cubehash.c \
@@ -625,22 +625,22 @@ crypto_libdash_crypto_base_a_SOURCES += \
   crypto/sph_sha2.h \
   crypto/sph_types.h
 
-crypto_libdash_crypto_x86_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libdash_crypto_x86_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libdash_crypto_x86_shani_a_CXXFLAGS += $(X86_SHANI_CXXFLAGS)
-crypto_libdash_crypto_x86_shani_a_CPPFLAGS += -DENABLE_X86_SHANI
-crypto_libdash_crypto_x86_shani_a_SOURCES = crypto/sha256_x86_shani.cpp
+crypto_libakax_crypto_x86_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libakax_crypto_x86_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libakax_crypto_x86_shani_a_CXXFLAGS += $(X86_SHANI_CXXFLAGS)
+crypto_libakax_crypto_x86_shani_a_CPPFLAGS += -DENABLE_X86_SHANI
+crypto_libakax_crypto_x86_shani_a_SOURCES = crypto/sha256_x86_shani.cpp
 
-crypto_libdash_crypto_arm_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libdash_crypto_arm_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libdash_crypto_arm_shani_a_CXXFLAGS += $(ARM_SHANI_CXXFLAGS)
-crypto_libdash_crypto_arm_shani_a_CPPFLAGS += -DENABLE_ARM_SHANI
-crypto_libdash_crypto_arm_shani_a_SOURCES = crypto/sha256_arm_shani.cpp
+crypto_libakax_crypto_arm_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libakax_crypto_arm_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libakax_crypto_arm_shani_a_CXXFLAGS += $(ARM_SHANI_CXXFLAGS)
+crypto_libakax_crypto_arm_shani_a_CPPFLAGS += -DENABLE_ARM_SHANI
+crypto_libakax_crypto_arm_shani_a_SOURCES = crypto/sha256_arm_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libdash_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_consensus_a_SOURCES = \
+libakax_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -680,9 +680,9 @@ libdash_consensus_a_SOURCES = \
   version.h
 
 # common: shared between akaxd, and akax-qt and non-server tools
-libdash_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_common_a_SOURCES = \
+libakax_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
   bip39.cpp \
@@ -718,9 +718,9 @@ libdash_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libdash_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_util_a_SOURCES = \
+libakax_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_util_a_SOURCES = \
   bls/bls_batchverifier.h \
   bls/bls_ies.cpp \
   bls/bls_ies.h \
@@ -761,37 +761,37 @@ libdash_util_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libdash_util_a_SOURCES += compat/glibc_compat.cpp
+libakax_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += -Wl,--wrap=log2f -Wl,--wrap=__divmoddi4
 AM_LDFLAGS += -Wl,--wrap=exp -Wl,--wrap=exp2 -Wl,--wrap=fcntl
 AM_LDFLAGS += -Wl,--wrap=log -Wl,--wrap=log2 -Wl,--wrap=pow
 endif
 
 # cli: shared between akax-cli and akax-qt
-libdash_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libdash_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libdash_cli_a_SOURCES = \
+libakax_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libakax_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakax_cli_a_SOURCES = \
   compat/stdin.h \
   compat/stdin.cpp \
   rpc/client.cpp \
   $(BITCOIN_CORE_H)
 
-nodist_libdash_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libakax_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # akaxd binary #
-dashd_SOURCES = dashd.cpp
-dashd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-dashd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dashd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+akaxd_SOURCES = dashd.cpp
+akaxd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+akaxd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akaxd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dashd_SOURCES += dashd-res.rc
+akaxd_SOURCES += dashd-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
-dashd_LDADD = \
+akaxd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_SERVER) \
@@ -806,37 +806,37 @@ dashd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-dashd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS) $(GMP_LIBS)
+akaxd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 
 # akax-cli binary #
-dash_cli_SOURCES = dash-cli.cpp
-dash_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-dash_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dash_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+akax_cli_SOURCES = dash-cli.cpp
+akax_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+akax_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akax_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dash_cli_SOURCES += dash-cli-res.rc
+akax_cli_SOURCES += dash-cli-res.rc
 endif
 
-dash_cli_LDADD = \
+akax_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
-dash_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS) $(GMP_LIBS)
+akax_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 #
 
 # akax-tx binary #
-dash_tx_SOURCES = dash-tx.cpp
-dash_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-dash_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dash_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+akax_tx_SOURCES = dash-tx.cpp
+akax_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+akax_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akax_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dash_tx_SOURCES += dash-tx-res.rc
+akax_tx_SOURCES += dash-tx-res.rc
 endif
 
-dash_tx_LDADD = \
+akax_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -844,22 +844,22 @@ dash_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-dash_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS) $(GMP_LIBS)
+akax_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 #
 
 # akax-wallet binary #
-dash_wallet_SOURCES = dash-wallet.cpp
-dash_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-dash_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-dash_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+akax_wallet_SOURCES = dash-wallet.cpp
+akax_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+akax_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akax_wallet_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-dash_wallet_SOURCES += dash-wallet-res.rc
+akax_wallet_SOURCES += dash-wallet-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see
 # https://eli.thegreenplace.net/2013/07/09/library-order-in-static-linking#circular-dependency)
-dash_wallet_LDADD = \
+akax_wallet_LDADD = \
   $(LIBBITCOIN_WALLET_TOOL) \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
@@ -875,13 +875,13 @@ dash_wallet_LDADD = \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
-dash_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(BLS_LIBS) $(GMP_LIBS)
+akax_wallet_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(ZMQ_LIBS) $(BLS_LIBS) $(GMP_LIBS)
 #
 
 # dashconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/dashconsensus.h
-libdashconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libdash_crypto_base_a_SOURCES) $(libdash_consensus_a_SOURCES)
+libdashconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libakax_crypto_base_a_SOURCES) $(libakax_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
   libdashconsensus_la_SOURCES += compat/glibc_compat.cpp

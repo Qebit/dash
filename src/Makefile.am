@@ -780,13 +780,13 @@ nodist_libakax_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # akaxd binary #
-akaxd_SOURCES = dashd.cpp
+akaxd_SOURCES = akaxd.cpp
 akaxd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 akaxd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 akaxd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-akaxd_SOURCES += dashd-res.rc
+akaxd_SOURCES += akaxd-res.rc
 endif
 
 # Libraries below may be listed more than once to resolve circular dependencies (see

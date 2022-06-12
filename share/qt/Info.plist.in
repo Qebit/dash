@@ -26,15 +26,15 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Dash-Qt</string>
+  <string>Akax-Qt</string>
   <key>CFBundleName</key>
-  <string>Dash-Qt</string>
+  <string>Akax-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.dash.Dash-Qt</string>
+  <string>org.akax.Akax-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -42,10 +42,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.dash.DashPayment</string>
+      <string>org.akax.AkaxPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>dash</string>
+        <string>akax</string>
       </array>
     </dict>
   </array>
@@ -54,9 +54,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.dash.paymentrequest</string>
+      <string>org.akax.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Dash payment request</string>
+      <string>Akax payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -64,10 +64,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-dash-payment-request</string>
+        <string>application/x-akax-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>dashpaymentrequest</string>
+          <string>akaxpaymentrequest</string>
         </array>
       </dict>
     </dict>
@@ -80,7 +80,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.dash.paymentrequest</string>
+        <string>org.akax.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>
